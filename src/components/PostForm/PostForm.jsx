@@ -119,7 +119,7 @@ export default function PostForm({ post }) {
         <Input
           label="Featured Image"
           type="file"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
+          accept="image/png, image/jpg, image/jpeg, image/gif image/webp"
           {...register("featuredimage", { required: !post })}
         />
         {post && (
