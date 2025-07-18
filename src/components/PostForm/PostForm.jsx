@@ -104,6 +104,7 @@ export default function PostForm({ post }) {
               shouldValidate: true,
             })
           }
+          disabled
         />
         <RTE
           label="Content"
