@@ -25,10 +25,10 @@ function App() {
     .finally(()=>setLoading(false)) //once its known that user is logged in or not, loading can be stopped and the app can be rendered
   },[])
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400 '>
-      <div className='w-full block'>
+    <div className='min-h-screen flex flex-wrap content-between 	bg-slate-100 text-slate-900 '>
+      <div className='w-full h-screen block'>
         <Header/>
-        <main>
+        <main className='mt-[65px]'>
           <Outlet /> {/* This is where the child routes will be rendered */}
         </main>
         <Footer />
