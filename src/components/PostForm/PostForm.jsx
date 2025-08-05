@@ -22,14 +22,14 @@ export default function PostForm({ post }) {
 
   const submitHandler = async (data) => {
     if (post) {
-      console.log("Updating post:", data);
+      // console.log("Updating post:", data);
       const file = data.featuredimage[0]
         ? await service.uploadFile(data.featuredimage[0])
         : null;
-        console.log("File uploaded:", file);
+        // console.log("File uploaded:", file);
       if (file) {
         service.deleteFile(post.featuredimage);
-        console.log("Old file deleted:", post.featuredimage);
+        // console.log("Old file deleted:", post.featuredimage);
       }
 
       const dbPost = await service.updatePost(post.$id, {
@@ -42,20 +42,21 @@ export default function PostForm({ post }) {
       }
     } else {
       const file = await service.uploadFile(data.featuredimage[0]);
-      console.log("File uploaded:", file);
-      
+      // console.log("File uploaded:", file);
       if (file) {
-        console.log("File ID:", file.$id);
+        // console.log("File ID:", file.$id);
         const fileId = file.$id;
         data.featuredimage = fileId;
-        console.log("Data with file ID:", data);
-        console.log("User ID:", userData.$id);
+        data.Author = userData.name;
+        // console.log("Data with file ID:", data);
+        // console.log("User ID:", userData.$id);
         const dbPost = await service.createPost({
           ...data,
           userId: userData.$id,
         });
 
         if (dbPost) {
+          alert("Post created!");
           navigate(`/post/${dbPost.$id}`);
         }
       }

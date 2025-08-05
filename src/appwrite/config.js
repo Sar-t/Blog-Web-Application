@@ -14,7 +14,7 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title,slug,content,featuredimage,status, userId}){
+    async createPost({title,slug,content,featuredimage,status, userId, Author}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -27,6 +27,7 @@ export class Service{
                     featuredimage, 
                     status, 
                     userId,
+                    Author,
                 }
             )
         } catch (error) {
@@ -80,18 +81,21 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status","active")]){ //we have to mention indexes
+    async getPosts(queries = [Query.equal("status","active")]){ //we have to mention indexes //we can query anything to get desired posts by default all active posts are shown
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                queries,
+                [
+                    ...queries,
+                    Query.orderDesc("$createdAt")
+
+                ],
             );
         } catch (error) {
             throw error;
         }
     } //get all posts of active user
-
     //file upload services
     async uploadFile(file){
         try {
