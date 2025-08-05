@@ -58,7 +58,10 @@ export class AuthService {
     async googleLogin() {
         try {
             // Replace this with your post-login URL
-            const redirectUrl = "http://localhost:5173";
+            const redirectUrl =
+                window.location.hostname === "localhost"
+                    ? "http://localhost:5173/"
+                    : "https://blog-web-application-1-szeb.onrender.com/";
 
             this.account.createOAuth2Session("google", redirectUrl, redirectUrl);
         } catch (error) {
