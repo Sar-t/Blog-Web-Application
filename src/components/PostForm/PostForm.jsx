@@ -13,6 +13,7 @@ export default function PostForm({ post }) {
         slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "active",
+        author: post?.author || "unknown",
       },
     });
 
