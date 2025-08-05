@@ -29,61 +29,68 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-400 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8 border border-gray-200">
-        <div className="flex justify-center mb-6">
-          <span className="inline-block w-24">
-            <Logo width="100%" />
+    <div className="relative min-h-screen flex items-center justify-center">
+      {/* Background image layer */}
+      <div
+        className="absolute inset-0 bg-center bg-cover filter blur-none brightness-50"
+        style={{
+          backgroundImage: "url('https://colibriwp.com/blog/wp-content/uploads/2019/11/poco-people.png')",
+          zIndex: 0,
+        }}
+      ></div>
+
+      {/* Foreground form container */}
+      <div className="relative z-10 w-full max-w-lg bg-auto bg-opacity-100 backdrop-blur-md p-18 rounded-xl shadow-lg">
+        <div className="mb-2 flex justify-center">
+          <span className="inline-block mr-15 mb-10 text-white font-bold w-full max-w-[100px]">
+            <p className="text-4xl">BLOGNest</p>
           </span>
         </div>
-
-        <h2 className="text-center text-2xl font-bold text-gray-800 mb-2">
-          Sign up to create account
+        <h2 className="text-center text-2xl font-bold text-white leading-tight">
+          Create your account
         </h2>
-
-        <p className="text-center text-sm text-gray-500 mb-6">
-          Already have an account?{" "}
+        <p className="mt-2 text-center text-base text-white">
+          Already have an account?&nbsp;
           <Link
             to="/login"
-            className="text-blue-600 hover:underline font-medium"
+            className="font-medium text-primary transition-all duration-200 hover:underline"
           >
             Sign In
           </Link>
         </p>
 
-        {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)} className="space-y-5">
-          <Input
-            label="Full Name"
-            placeholder="Enter your full name"
-            {...register("name", { required: true })}
-          />
-
-          <Input
-            label="Email"
-            placeholder="Enter your email"
-            type="email"
-            {...register("email", {
-              required: true,
-              validate: {
-                matchPattern: (value) =>
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                  "Enter a valid email address",
-              },
-            })}
-          />
-
-          <Input
-            label="Password"
-            placeholder="Enter your password"
-            type="password"
-            {...register("password", { required: true })}
-          />
-
-          <Button type="submit" className="w-full">
-            Create Account
-          </Button>
+        <form onSubmit={handleSubmit(create)} className="mt-8">
+          <div className="space-y-5">
+            <Input
+              label="Full Name"
+              placeholder="Enter your full name"
+              {...register("name", { required: true })}
+            />
+            <Input
+              label="Email"
+              placeholder="Enter your email"
+              type="email"
+              {...register("email", {
+                required: true,
+                validate: {
+                  matchPattern: (value) =>
+                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                    "Enter a valid email address",
+                },
+              })}
+            />
+            <Input
+              label="Password"
+              placeholder="Enter your password"
+              type="password"
+              {...register("password", { required: true })}
+            />
+            <Button type="submit" className="w-full">
+              Create Account
+            </Button>
+          </div>
         </form>
       </div>
     </div>

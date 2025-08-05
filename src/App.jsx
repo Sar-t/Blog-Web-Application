@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import {useDispatch} from 'react-redux'
-import authService from './appwrite/auth'
+import authService from './appwrite/auth.js'
 import './App.css'
-import { Footer, Header } from './components/Index'
-import { login, logout } from './store/authSlice'
+import { Footer, Header } from './components/Index.js'
+import { login, logout } from './store/authSlice.js'
 import { Outlet } from 'react-router-dom'
 
 function App() {

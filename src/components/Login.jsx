@@ -3,20 +3,20 @@
 //********************************************************************************** */
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login as authLogin } from "../store/authSlice";
-import { Button, Input, Logo } from "../components/Index";
+import { login as authLogin } from "../store/authSlice.js";
+import { Button, Input, Logo } from "../components/Index.js";
 import { useDispatch, useSelector } from "react-redux";
-import authService from "../appwrite/auth/";
+import authService from "../appwrite/auth.js";
 import { useForm } from "react-hook-form";
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm(); 
-  const userDat = useSelector((state) => state.auth.userData);
-useEffect(() => {
-  console.log("Redux store updated userData:", userDat);
-}, [userDat]);
+  //const userData = useSelector((state) => state.auth.userData);
+// useEffect(() => {
+//   console.log("Redux store updated userData:", userData);
+// }, [userData]);
 
   //this is used to check if the user data is updated in the store after login
   //it makes the code short.
@@ -29,8 +29,8 @@ useEffect(() => {
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) {
-          console.log("User Data before :",userData)
-          dispatch(authLogin(userData));
+          // console.log("User Data before :",userData)
+          dispatch(authLogin({userData}));
           
         }
         

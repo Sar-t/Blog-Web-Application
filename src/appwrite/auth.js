@@ -32,6 +32,7 @@ export class AuthService{
                 email,
                 password
             );
+            console.log("Session created:",user);
             return user;
         } catch (error) {
             throw error;

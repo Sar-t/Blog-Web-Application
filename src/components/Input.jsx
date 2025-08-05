@@ -10,11 +10,11 @@ const Input = React.forwardRef(function Input({ //forwarding the ref to the inpu
 },ref){
     const id = useId(); //this id is used to link the label with the input element, so that when the label is clicked, the input element is focused. 
    return (<div className='w-full'>
-    {label && <label className='inline-block mb-1 pl-1 text-white' id={id}>{label}</label>
+    {label && <label className='inline-block mb-1 pl-1' id={id}>{label}</label>
     }
     <input
     type = {type}
-    className={`px-3 py-2 rounded-lg bg-blend-color text-white outline-none focus: duration-200 border border-gray-200 w-full ${className}`}
+    className={`px-3 py-2 rounded-lg bg-blend-color outline-none focus: duration-200 border border-gray-200 w-full ${className}`}
     ref = {ref} //forwarding the ref to the input element
     {...props} //spreading the rest of the props
     id = {id} //setting the id for the input element
